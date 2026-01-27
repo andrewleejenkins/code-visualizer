@@ -398,9 +398,9 @@ export function DetailPanel({ type, item, analysis, onSelectFile }: DetailPanelP
       <div className="flex border-b border-[var(--border-color)] flex-shrink-0">
         <button
           onClick={() => setActiveTab("selected")}
-          className={`flex-1 px-4 py-2.5 text-sm font-medium transition-colors ${
+          className={`flex-1 px-4 py-3 text-xs font-semibold uppercase tracking-wide transition-colors ${
             activeTab === "selected"
-              ? "text-[var(--accent-purple)] border-b-2 border-[var(--accent-purple)] bg-[var(--bg-primary)]"
+              ? "text-[var(--accent)] border-b-2 border-[var(--accent)] bg-[var(--bg-primary)]"
               : "text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
           }`}
         >
@@ -408,9 +408,9 @@ export function DetailPanel({ type, item, analysis, onSelectFile }: DetailPanelP
         </button>
         <button
           onClick={() => setActiveTab("insights")}
-          className={`flex-1 px-4 py-2.5 text-sm font-medium transition-colors flex items-center justify-center gap-1.5 ${
+          className={`flex-1 px-4 py-3 text-xs font-semibold uppercase tracking-wide transition-colors flex items-center justify-center gap-1.5 ${
             activeTab === "insights"
-              ? "text-[var(--accent-green)] border-b-2 border-[var(--accent-green)] bg-[var(--bg-primary)]"
+              ? "text-[var(--success)] border-b-2 border-[var(--success)] bg-[var(--bg-primary)]"
               : "text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
           }`}
         >
@@ -435,7 +435,7 @@ export function DetailPanel({ type, item, analysis, onSelectFile }: DetailPanelP
               </p>
               <button
                 onClick={() => setActiveTab("insights")}
-                className="mt-4 px-4 py-2 bg-[var(--accent-green)]/20 text-[var(--accent-green)] rounded-lg text-sm hover:bg-[var(--accent-green)]/30 transition-colors"
+                className="mt-4 px-5 py-2.5 bg-[var(--success)]/20 text-[var(--success)] rounded-full text-xs font-semibold uppercase tracking-wide hover:bg-[var(--success)]/30 transition-colors"
               >
                 💡 View Project Insights
               </button>
@@ -1195,7 +1195,7 @@ function ComponentDetail({
         <div className="bg-[var(--bg-primary)] rounded-lg p-4 border border-[var(--border-color)]">
           {loading ? (
             <div className="flex items-center gap-2 text-[var(--text-muted)]">
-              <div className="animate-spin rounded-full h-4 w-4 border-2 border-[var(--accent-purple)] border-t-transparent"></div>
+              <div className="animate-spin rounded-full h-4 w-4 border-2 border-[var(--accent)] border-t-transparent"></div>
               <span>Analyzing component...</span>
             </div>
           ) : (
@@ -1216,7 +1216,7 @@ function ComponentDetail({
             <div className="space-y-2">
               {componentAnalysis.details.map((detail, i) => (
                 <div key={i} className="flex items-start gap-2">
-                  <span className="text-[var(--accent-purple)] mt-1">•</span>
+                  <span className="text-[var(--accent)] mt-1">•</span>
                   <span className="text-[var(--text-secondary)] text-sm">{detail}</span>
                 </div>
               ))}
@@ -1236,7 +1236,7 @@ function ComponentDetail({
               {componentAnalysis.exports.map((exp, i) => (
                 <span
                   key={i}
-                  className="px-2 py-1 bg-[var(--accent-purple)]/20 text-[var(--accent-purple)] rounded text-sm font-mono"
+                  className="px-2 py-1 bg-[var(--accent-dark)]/20 text-[var(--accent)] rounded text-sm font-mono"
                 >
                   {exp}
                 </span>
@@ -1580,7 +1580,7 @@ function FileDetail({
         <div className="bg-[var(--bg-primary)] rounded-lg p-4 border border-[var(--border-color)]">
           {loading ? (
             <div className="flex items-center gap-2 text-[var(--text-muted)]">
-              <div className="animate-spin rounded-full h-4 w-4 border-2 border-[var(--accent-purple)] border-t-transparent"></div>
+              <div className="animate-spin rounded-full h-4 w-4 border-2 border-[var(--accent)] border-t-transparent"></div>
               <span>Analyzing file...</span>
             </div>
           ) : (
@@ -1601,7 +1601,7 @@ function FileDetail({
             <div className="space-y-2">
               {fileAnalysis.details.map((detail, i) => (
                 <div key={i} className="flex items-start gap-2">
-                  <span className="text-[var(--accent-purple)] mt-1">•</span>
+                  <span className="text-[var(--accent)] mt-1">•</span>
                   <span className="text-[var(--text-secondary)] text-sm">{detail}</span>
                 </div>
               ))}
@@ -1621,7 +1621,7 @@ function FileDetail({
               {fileAnalysis.exports.map((exp, i) => (
                 <span
                   key={i}
-                  className="px-2 py-1 bg-[var(--accent-purple)]/20 text-[var(--accent-purple)] rounded text-sm font-mono"
+                  className="px-2 py-1 bg-[var(--accent-dark)]/20 text-[var(--accent)] rounded text-sm font-mono"
                 >
                   {exp}
                 </span>
@@ -1731,7 +1731,7 @@ function InsightsSidebar({
     return (
       <div className="flex items-center justify-center h-48">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-2 border-[var(--accent-purple)] border-t-transparent mx-auto"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-2 border-[var(--accent)] border-t-transparent mx-auto"></div>
           <p className="mt-3 text-sm text-[var(--text-muted)]">Loading insights...</p>
         </div>
       </div>
@@ -1763,10 +1763,10 @@ function InsightsSidebar({
           <button
             key={section.id}
             onClick={() => setExpandedSection(section.id)}
-            className={`px-2 py-1 rounded text-xs flex items-center gap-1 transition-colors ${
+            className={`px-2.5 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1 transition-colors ${
               expandedSection === section.id
-                ? "bg-[var(--accent-green)] text-white"
-                : "bg-[var(--bg-primary)] text-[var(--text-muted)] hover:bg-[var(--bg-tertiary)]"
+                ? "bg-[var(--accent-dark)] text-white"
+                : "bg-[var(--bg-primary)] text-[var(--text-muted)] hover:bg-[var(--bg-tertiary)] hover:text-[var(--text-secondary)]"
             }`}
           >
             <span>{section.icon}</span>
@@ -1823,7 +1823,7 @@ function InsightsSidebar({
 
           {/* Key Insight */}
           {insights.health.insights[0] && (
-            <div className="p-3 bg-[var(--accent-purple)]/10 rounded-lg border border-[var(--accent-purple)]/30">
+            <div className="p-3 bg-[var(--accent-dark)]/10 rounded-sm border-l-[3px] border-[var(--accent)]">
               <p className="text-sm text-[var(--text-secondary)]">
                 💡 {insights.health.insights[0]}
               </p>
@@ -1844,12 +1844,12 @@ function InsightsSidebar({
             <button
               key={item.file}
               onClick={() => onSelectFile?.(item.file)}
-              className="w-full text-left p-3 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg hover:border-[var(--accent-purple)] transition-colors"
+              className="w-full text-left p-3 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-sm hover:border-[var(--accent-dark)] transition-colors"
             >
               <div className="flex items-start gap-2">
                 <span className={`w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0 ${
-                  item.importance === "critical" ? "bg-red-500" :
-                  item.importance === "important" ? "bg-[var(--accent-purple)]" :
+                  item.importance === "critical" ? "bg-[var(--accent)]" :
+                  item.importance === "important" ? "bg-[var(--accent-dark)]" :
                   "bg-[var(--text-muted)]"
                 }`}>
                   {index + 1}
@@ -1885,7 +1885,7 @@ function InsightsSidebar({
                   <button
                     key={file}
                     onClick={() => onSelectFile?.(file)}
-                    className="px-1.5 py-0.5 bg-[var(--bg-tertiary)] rounded text-xs text-[var(--text-muted)] hover:text-[var(--accent-purple)] transition-colors truncate max-w-[100px]"
+                    className="px-1.5 py-0.5 bg-[var(--bg-tertiary)] rounded text-xs text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors truncate max-w-[100px]"
                   >
                     {file.split("/").pop()}
                   </button>
@@ -1992,7 +1992,7 @@ function InsightsSidebar({
                 {analogyMode ? term.simpleExplanation : term.definition}
                 {term.example && (
                   <div className="mt-2 text-[var(--text-muted)]">
-                    Example: <code className="text-[var(--accent-purple)]">{term.example}</code>
+                    Example: <code className="text-[var(--accent)]">{term.example}</code>
                   </div>
                 )}
               </div>

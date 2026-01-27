@@ -525,6 +525,15 @@ function generateDetailedSummary(
     return `This is a utility module containing ${functionCount > 0 ? functionCount : 'helper'} reusable functions for common operations throughout the application. Utility functions handle tasks like data formatting, validation, calculations, string manipulation, date handling, and other operations that don't belong to any specific component. Centralizing these prevents code duplication and makes testing easier.`;
   }
 
+  // Tailwind preset files
+  if (lowerBaseName.includes("tailwind") && lowerBaseName.includes("preset")) {
+    const isDark = lowerBaseName.includes("dark");
+    const hasColors = lowerContent.includes("colors") || lowerContent.includes("primary") || lowerContent.includes("background");
+    const hasFonts = lowerContent.includes("fontfamily") || lowerContent.includes("font-family");
+    const hasSpacing = lowerContent.includes("spacing") || lowerContent.includes("borderradius") || lowerContent.includes("border-radius");
+    return `This is a Tailwind CSS preset that defines ${isDark ? "dark mode " : ""}design system tokens and configuration. ${hasColors ? "It defines the color palette including brand colors, semantic colors, and status colors. " : ""}${hasFonts ? "It specifies typography with custom font families. " : ""}${hasSpacing ? "It configures spacing, border radius, and other design tokens. " : ""}Tailwind presets allow sharing consistent design systems across projects by extending the default Tailwind theme with custom values.`;
+  }
+
   // Config
   if (lowerBaseName.includes("config") || lowerBaseName.includes("configuration") || lowerBaseName.includes("settings")) {
     return `This is a configuration file that defines settings controlling application behavior. It may include API endpoints, feature flags, default values, environment-specific settings, and other configurable parameters. Centralizing configuration makes it easy to adjust application behavior without hunting through code, and helps manage different settings for development, staging, and production environments.`;
@@ -626,8 +635,10 @@ function generateDetailedSummary(
     return `This is a deployment script that pushes code to production or staging environments. ${hasAws ? "It deploys to AWS services. " : ""}${hasDocker ? "It uses Docker containers. " : ""}${hasVercel ? "It deploys to Vercel. " : ""}Deployment scripts automate the process of getting code changes live, including building, uploading, and configuring the production environment.`;
   }
 
-  // Clean/reset scripts
-  if (lowerBaseName.includes("clean") || lowerBaseName.includes("reset") || lowerBaseName.includes("clear")) {
+  // Clean/reset scripts (but not "preset" files)
+  if ((lowerBaseName.includes("clean") || lowerBaseName.includes("clear") ||
+      (lowerBaseName.includes("reset") && !lowerBaseName.includes("preset"))) &&
+      !lowerBaseName.includes("tailwind")) {
     const hasCache = lowerContent.includes("cache");
     const hasDb = lowerContent.includes("database") || lowerContent.includes("db") || lowerContent.includes("prisma");
     return `This is a cleanup/reset script that removes temporary files, caches, or resets state. ${hasCache ? "It clears cached data. " : ""}${hasDb ? "It may reset database state. " : ""}These scripts are useful during development to start fresh, or in CI/CD to ensure clean builds.`;

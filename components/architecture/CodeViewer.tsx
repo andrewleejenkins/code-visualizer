@@ -115,13 +115,13 @@ export function CodeViewer({ filePath, fileName }: CodeViewerProps) {
         </h3>
         <button
           onClick={openModal}
-          className="w-full p-4 bg-[var(--bg-primary)] rounded-lg border border-[var(--border-color)] hover:border-[var(--accent-purple)] transition-colors text-left group"
+          className="w-full p-4 bg-[var(--bg-primary)] rounded-sm border border-[var(--border-color)] hover:border-[var(--accent-dark)] transition-colors text-left group"
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <span className="text-2xl">📄</span>
               <div>
-                <div className="font-medium text-[var(--text-primary)] group-hover:text-[var(--accent-purple)]">
+                <div className="font-medium text-[var(--text-primary)] group-hover:text-[var(--accent)]">
                   {fileName}
                 </div>
                 <div className="text-xs text-[var(--text-muted)]">
@@ -130,7 +130,7 @@ export function CodeViewer({ filePath, fileName }: CodeViewerProps) {
               </div>
             </div>
             <svg
-              className="w-5 h-5 text-[var(--text-muted)] group-hover:text-[var(--accent-purple)]"
+              className="w-5 h-5 text-[var(--text-muted)] group-hover:text-[var(--accent)]"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -205,7 +205,7 @@ export function CodeViewer({ filePath, fileName }: CodeViewerProps) {
             <div className="flex-1 overflow-auto">
               {loading && (
                 <div className="flex flex-col items-center justify-center h-64">
-                  <div className="animate-spin rounded-full h-10 w-10 border-2 border-[var(--accent-purple)] border-t-transparent"></div>
+                  <div className="animate-spin rounded-full h-10 w-10 border-2 border-[var(--accent)] border-t-transparent"></div>
                   <p className="mt-4 text-[var(--text-muted)]">
                     {analogyMode ? "Opening the file..." : "Loading..."}
                   </p>
@@ -218,7 +218,7 @@ export function CodeViewer({ filePath, fileName }: CodeViewerProps) {
                   <p className="text-[var(--text-secondary)] mb-4">{error}</p>
                   <button
                     onClick={fetchCode}
-                    className="px-4 py-2 bg-[var(--accent-purple)] text-white rounded-lg hover:opacity-90 transition-opacity"
+                    className="px-5 py-2.5 bg-[var(--accent-dark)] text-white rounded-full text-xs font-semibold uppercase tracking-wide hover:bg-[#6d0000] transition-colors"
                   >
                     Try again
                   </button>
@@ -267,7 +267,7 @@ export function CodeViewer({ filePath, fileName }: CodeViewerProps) {
                             {description.exports.map((exp, i) => (
                               <span
                                 key={i}
-                                className="px-2 py-1 bg-[var(--accent-purple)]/20 text-[var(--accent-purple)] rounded text-sm font-mono"
+                                className="px-2 py-1 bg-[var(--accent-dark)]/20 text-[var(--accent)] rounded text-sm font-mono"
                               >
                                 {exp}
                               </span>

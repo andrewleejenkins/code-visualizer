@@ -236,7 +236,7 @@ export function ExplorerLayout({ analysis }: ExplorerLayoutProps) {
             <div className="hidden md:flex items-center gap-4 text-sm text-[var(--text-secondary)] border-l border-[var(--border-color)] pl-4">
               {analysis.routes && (
                 <span>
-                  <span className="text-[var(--accent-green)] font-medium">
+                  <span className="text-[var(--success)] font-medium">
                     {analysis.routes.routes.length}
                   </span>{" "}
                   {analogyMode ? "doorways" : "routes"}
@@ -244,7 +244,7 @@ export function ExplorerLayout({ analysis }: ExplorerLayoutProps) {
               )}
               {analysis.components && (
                 <span>
-                  <span className="text-[var(--accent-pink)] font-medium">
+                  <span className="text-[var(--accent)] font-medium">
                     {analysis.components.components.length}
                   </span>{" "}
                   {analogyMode ? "blocks" : "components"}
@@ -252,7 +252,7 @@ export function ExplorerLayout({ analysis }: ExplorerLayoutProps) {
               )}
               {analysis.models && (
                 <span>
-                  <span className="text-[var(--accent-purple)] font-medium">
+                  <span className="text-[var(--info)] font-medium">
                     {analysis.models.models.length}
                   </span>{" "}
                   {analogyMode ? "forms" : "models"}
@@ -262,11 +262,11 @@ export function ExplorerLayout({ analysis }: ExplorerLayoutProps) {
           </div>
 
           {/* Controls */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             {/* Change Project Button */}
             <button
               onClick={reset}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-primary)] transition-colors"
+              className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wide bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-elevated)] border border-[var(--border-color)] hover:border-[var(--border-hover)] transition-all duration-200"
               title="Change to a different project"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -278,10 +278,10 @@ export function ExplorerLayout({ analysis }: ExplorerLayoutProps) {
             {/* Friendly Mode Toggle */}
             <button
               onClick={() => setAnalogyMode(!analogyMode)}
-              className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm transition-colors ${
+              className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wide transition-all duration-200 ${
                 analogyMode
-                  ? "bg-[var(--accent-purple)] text-white"
-                  : "bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                  ? "bg-[var(--accent-dark)] text-white shadow-[var(--shadow-glow)]"
+                  : "bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border-color)] hover:border-[var(--border-hover)]"
               }`}
               title={analogyMode ? "Switch to technical mode" : "Switch to friendly mode"}
             >
@@ -292,7 +292,7 @@ export function ExplorerLayout({ analysis }: ExplorerLayoutProps) {
             {/* Settings */}
             <button
               onClick={() => setShowSettings(!showSettings)}
-              className="p-2 rounded-lg hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+              className="p-2.5 rounded-full hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-transparent hover:border-[var(--border-color)] transition-all duration-200"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
@@ -323,7 +323,7 @@ export function ExplorerLayout({ analysis }: ExplorerLayoutProps) {
                     max="3"
                     value={complexityLevel}
                     onChange={(e) => setComplexityLevel(Number(e.target.value))}
-                    className="flex-1 h-2 bg-[var(--bg-tertiary)] rounded-lg appearance-none cursor-pointer accent-[var(--accent-purple)]"
+                    className="flex-1 h-2 bg-[var(--bg-tertiary)] rounded-lg appearance-none cursor-pointer accent-[var(--accent-dark)]"
                   />
                   <span className="text-sm text-[var(--text-secondary)] w-24">
                     {COMPLEXITY_LEVELS[complexityLevel as 1 | 2 | 3].icon}{" "}
@@ -344,7 +344,7 @@ export function ExplorerLayout({ analysis }: ExplorerLayoutProps) {
                       onClick={() => setActiveStoryPath(activeStoryPath === path.id ? null : path.id)}
                       className={`px-3 py-1.5 rounded-lg text-sm transition-colors ${
                         activeStoryPath === path.id
-                          ? "bg-[var(--accent-purple)] text-white"
+                          ? "bg-[var(--accent-dark)] text-white"
                           : "bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                       }`}
                     >
@@ -517,7 +517,7 @@ function StoryBanner({
   const step = path.steps[currentStep];
 
   return (
-    <div className="flex-shrink-0 bg-gradient-to-r from-[var(--accent-purple)]/10 via-[var(--accent-blue)]/10 to-[var(--accent-pink)]/10 border-b border-[var(--border-color)] px-4 py-3">
+    <div className="flex-shrink-0 bg-gradient-to-r from-[var(--accent-dark)]/10 via-[var(--info)]/10 to-[var(--accent)]/10 border-b border-[var(--border-color)] px-4 py-3">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
           <span className="text-2xl">{path.icon}</span>
@@ -573,7 +573,7 @@ function StoryBanner({
           <div
             key={i}
             className={`h-1 flex-1 rounded-full ${
-              i <= currentStep ? "bg-[var(--accent-purple)]" : "bg-[var(--bg-tertiary)]"
+              i <= currentStep ? "bg-[var(--accent-dark)]" : "bg-[var(--bg-tertiary)]"
             }`}
           />
         ))}

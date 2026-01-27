@@ -326,10 +326,10 @@ function TreeNodeItem({
             onSelect(node);
           }
         }}
-        className={`w-full flex items-center gap-2 px-2 py-1.5 text-left text-sm rounded-md transition-colors ${
+        className={`w-full flex items-center gap-2 px-2 py-1.5 text-left text-sm transition-colors ${
           isSelected
-            ? "bg-[var(--accent-purple)] text-white"
-            : "hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)]"
+            ? "bg-[var(--accent-dark)] text-white rounded-sm"
+            : "hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)] rounded-sm"
         }`}
         style={{ paddingLeft: `${depth * 16 + 8}px` }}
       >
@@ -577,7 +577,7 @@ export function TreeSidebar({ analysis, selectedId, onSelect }: TreeSidebarProps
             placeholder={analogyMode ? "Find something..." : "Search..."}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-3 py-2 text-sm bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent-purple)]"
+            className="w-full pl-9 pr-3 py-2.5 text-sm bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent-dark)] focus:ring-1 focus:ring-[var(--accent-dark)]/30"
           />
         </div>
       </div>
@@ -608,7 +608,7 @@ export function TreeSidebar({ analysis, selectedId, onSelect }: TreeSidebarProps
 
       {/* Quick Actions */}
       <div className="p-3 border-t border-[var(--border-color)]">
-        <div className="text-xs text-[var(--text-muted)] mb-2 font-medium">
+        <div className="text-[0.65rem] text-[var(--text-muted)] mb-2 font-semibold uppercase tracking-wide">
           {analogyMode ? "Quick Start" : "Quick Actions"}
         </div>
         <button
@@ -616,13 +616,13 @@ export function TreeSidebar({ analysis, selectedId, onSelect }: TreeSidebarProps
             // Expand all top-level
             setExpanded(new Set(tree.map((n) => n.id)));
           }}
-          className="w-full text-left text-sm px-2 py-1.5 rounded hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)]"
+          className="w-full text-left text-xs px-3 py-2 rounded-sm hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
         >
           {analogyMode ? "📖 Show everything" : "Expand All"}
         </button>
         <button
           onClick={() => setExpanded(new Set())}
-          className="w-full text-left text-sm px-2 py-1.5 rounded hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)]"
+          className="w-full text-left text-xs px-3 py-2 rounded-sm hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
         >
           {analogyMode ? "📕 Collapse all" : "Collapse All"}
         </button>
